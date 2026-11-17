@@ -1,0 +1,1632 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Abdurrahim Gider | Backend &amp; AI Developer</title>
+    <meta
+      name="description"
+      content="Backend & AI developer in Ankara. I build backends that put AI into production safely: agents on real customer data, with access control and human approval."
+    />
+    <meta
+      property="og:title"
+      content="Abdurrahim Gider | Backend & AI Developer"
+    />
+    <meta
+      property="og:description"
+      content="I build backends that put AI into production safely."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://abgum.github.io/" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f6b5c'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='%23fff' text-anchor='middle'%3EAG%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f6f4ee;
+        --surface: #fffdf8;
+        --surface-2: #efece3;
+        --ink: #1b1f1c;
+        --muted: #5d655f;
+        --line: #dcd8cc;
+        --accent: #0f6b5c;
+        --accent-soft: #dcebe6;
+        --accent-ink: #ffffff;
+        --warn: #a35a00;
+        --warn-soft: #f8e9cf;
+        --grid: rgba(27, 31, 28, 0.055);
+        --shadow:
+          0 1px 2px rgba(27, 31, 28, 0.05), 0 8px 24px rgba(27, 31, 28, 0.05);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #0f1412;
+          --surface: #161c19;
+          --surface-2: #1d2521;
+          --ink: #e7eae5;
+          --muted: #9aa49d;
+          --line: #2a342f;
+          --accent: #62d1b6;
+          --accent-soft: #17332c;
+          --accent-ink: #0b1512;
+          --warn: #f0b455;
+          --warn-soft: #3a2c12;
+          --grid: rgba(231, 234, 229, 0.05);
+          --shadow:
+            0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #0f1412;
+        --surface: #161c19;
+        --surface-2: #1d2521;
+        --ink: #e7eae5;
+        --muted: #9aa49d;
+        --line: #2a342f;
+        --accent: #62d1b6;
+        --accent-soft: #17332c;
+        --accent-ink: #0b1512;
+        --warn: #f0b455;
+        --warn-soft: #3a2c12;
+        --grid: rgba(231, 234, 229, 0.05);
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          transition: none !important;
+        }
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          "IBM Plex Sans",
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
+        font-size: 17px;
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Fraunces", Georgia, serif;
+        font-weight: 500;
+        line-height: 1.12;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+      p {
+        margin: 0;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .wrap {
+        width: 100%;
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .mono {
+        font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+      }
+      .label {
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-size: 12.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      /* nav */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 58px;
+        gap: 16px;
+      }
+      .brand {
+        font-family: "Fraunces", Georgia, serif;
+        font-size: 19px;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .brand span {
+        color: var(--accent);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+      }
+      .nav-links a {
+        font-size: 14.5px;
+        text-decoration: none;
+        color: var(--muted);
+      }
+      .nav-links a:hover {
+        color: var(--ink);
+      }
+      .theme-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--ink);
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        flex: none;
+      }
+      .theme-btn svg {
+        width: 17px;
+        height: 17px;
+      }
+      @media (max-width: 640px) {
+        .nav-links a {
+          display: none;
+        }
+      }
+
+      /* hero */
+      .hero {
+        position: relative;
+        padding: 84px 0 64px;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background-image:
+          linear-gradient(var(--grid) 1px, transparent 1px),
+          linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+        background-size: 44px 44px;
+        -webkit-mask-image: radial-gradient(
+          ellipse at 75% 20%,
+          #000 0%,
+          transparent 70%
+        );
+        mask-image: radial-gradient(
+          ellipse at 75% 20%,
+          #000 0%,
+          transparent 70%
+        );
+      }
+      .contours {
+        position: absolute;
+        right: -140px;
+        top: -60px;
+        width: 620px;
+        height: 620px;
+        z-index: -1;
+        color: var(--accent);
+        opacity: 0.22;
+        pointer-events: none;
+      }
+      .hero h1 {
+        font-size: clamp(38px, 6.4vw, 74px);
+        max-width: 15ch;
+        margin: 18px 0 26px;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .hero .intro {
+        max-width: 64ch;
+        color: var(--muted);
+        font-size: 18px;
+      }
+      .hero .intro strong {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 32px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 18px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        transition:
+          border-color 0.15s,
+          transform 0.15s;
+      }
+      .btn:hover {
+        border-color: var(--accent);
+        transform: translateY(-1px);
+      }
+      .btn.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--accent-ink);
+      }
+      .btn svg {
+        width: 16px;
+        height: 16px;
+        flex: none;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 60px;
+        border-top: 1px solid var(--line);
+      }
+      .stat {
+        padding: 22px 20px 0 0;
+      }
+      .stat + .stat {
+        padding-left: 20px;
+        border-left: 1px solid var(--line);
+      }
+      .stat b {
+        display: block;
+        font-family: "Fraunces", Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(30px, 4vw, 44px);
+        line-height: 1.1;
+      }
+      .stat span {
+        display: block;
+        margin-top: 6px;
+        font-size: 14px;
+        color: var(--muted);
+        max-width: 22ch;
+      }
+      @media (max-width: 760px) {
+        .hero {
+          padding: 56px 0 44px;
+        }
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        .stat {
+          padding: 18px 12px 18px 0;
+        }
+        .stat + .stat {
+          padding-left: 0;
+          border-left: 0;
+        }
+        .stat:nth-child(even) {
+          padding-left: 16px;
+          border-left: 1px solid var(--line);
+        }
+        .stat:nth-child(n + 3) {
+          border-top: 1px solid var(--line);
+        }
+      }
+
+      /* sections */
+      section {
+        padding: 72px 0;
+      }
+      .sec-head {
+        display: flex;
+        align-items: baseline;
+        gap: 16px;
+        margin-bottom: 34px;
+      }
+      .sec-head h2 {
+        font-size: clamp(28px, 3.6vw, 40px);
+      }
+      .sec-head .num {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 13px;
+        color: var(--accent);
+      }
+      .sec-head::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--line);
+        align-self: center;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 30px;
+        box-shadow: var(--shadow);
+        min-width: 0;
+      }
+      .card h3 {
+        font-size: 25px;
+        margin: 10px 0 8px;
+      }
+      .card .lead {
+        color: var(--muted);
+        margin-bottom: 18px;
+      }
+      .bul li {
+        position: relative;
+        padding-left: 20px;
+        margin: 9px 0;
+        font-size: 16px;
+      }
+      .bul li::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 0.68em;
+        width: 7px;
+        height: 7px;
+        border-radius: 2px;
+        background: var(--accent);
+        transform: rotate(45deg);
+      }
+      .bul li b {
+        font-weight: 600;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 20px;
+      }
+      .tag {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12.5px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--surface-2);
+        color: var(--muted);
+        border: 1px solid var(--line);
+      }
+      .pill {
+        display: inline-block;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+      .pill.warn {
+        background: var(--warn-soft);
+        color: var(--warn);
+      }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+      }
+      .link {
+        color: var(--accent);
+        font-weight: 500;
+        text-decoration: none;
+        border-bottom: 1px solid
+          color-mix(in srgb, var(--accent) 40%, transparent);
+      }
+      .link:hover {
+        border-bottom-color: var(--accent);
+      }
+
+      /* featured */
+      .feature {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+        gap: 38px;
+        align-items: start;
+      }
+      .feature h3 {
+        font-size: clamp(27px, 3.2vw, 36px);
+      }
+      .diagram {
+        background: var(--surface-2);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px;
+      }
+      .seg {
+        display: flex;
+        gap: 4px;
+        padding: 4px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        margin-bottom: 12px;
+      }
+      .seg button {
+        flex: 1;
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        font:
+          500 13.5px "IBM Plex Sans",
+          sans-serif;
+        padding: 7px 6px;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+      .seg button[aria-pressed="true"] {
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+      .diagram svg {
+        display: block;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        margin: 0 auto;
+      }
+      .diagram .cap {
+        font-size: 14px;
+        color: var(--muted);
+        margin-top: 10px;
+        min-height: 4.6em;
+      }
+      .d-box {
+        fill: var(--surface);
+        stroke: var(--line);
+        stroke-width: 1.2;
+      }
+      .d-core {
+        fill: var(--accent-soft);
+        stroke: var(--accent);
+        stroke-width: 1.2;
+      }
+      .d-warn {
+        fill: var(--warn-soft);
+        stroke: var(--warn);
+        stroke-width: 1.2;
+      }
+      .d-dash {
+        stroke-dasharray: 5 4;
+      }
+      .d-ln {
+        stroke: var(--muted);
+        stroke-width: 1.4;
+        fill: none;
+      }
+      .d-ah {
+        fill: var(--muted);
+      }
+      .d-t {
+        font:
+          600 13.5px "IBM Plex Sans",
+          sans-serif;
+        fill: var(--ink);
+        text-anchor: middle;
+      }
+      .d-s {
+        font:
+          400 10.5px "IBM Plex Mono",
+          monospace;
+        fill: var(--muted);
+        text-anchor: middle;
+      }
+      .g-read,
+      .g-write {
+        transition: opacity 0.25s;
+      }
+      [data-path="read"] .g-write,
+      [data-path="write"] .g-read {
+        opacity: 0.16;
+      }
+
+      .incident {
+        margin-top: 30px;
+        padding-top: 26px;
+        border-top: 1px dashed var(--line);
+      }
+      .incident h4 {
+        font:
+          500 21px "Fraunces",
+          Georgia,
+          serif;
+        margin: 10px 0 18px;
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 14px;
+        counter-reset: s;
+      }
+      .steps li {
+        counter-increment: s;
+        position: relative;
+        padding-top: 30px;
+        font-size: 14.5px;
+        color: var(--muted);
+      }
+      .steps li::before {
+        content: "0" counter(s);
+        position: absolute;
+        top: 0;
+        left: 0;
+        font:
+          500 12px "IBM Plex Mono",
+          monospace;
+        color: var(--accent);
+      }
+      .steps li::after {
+        content: "";
+        position: absolute;
+        top: 8px;
+        left: 30px;
+        right: -8px;
+        height: 1px;
+        background: var(--line);
+      }
+      .steps li:last-child::after {
+        right: 0;
+      }
+      .steps b {
+        display: block;
+        color: var(--ink);
+        font-weight: 600;
+        font-size: 15px;
+        margin-bottom: 3px;
+      }
+      .outcome {
+        margin-top: 20px;
+        padding: 13px 16px;
+        border-radius: 12px;
+        background: var(--accent-soft);
+        color: var(--ink);
+        font-size: 15.5px;
+      }
+      .outcome b {
+        color: var(--accent);
+      }
+
+      .grid2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+        margin-top: 22px;
+      }
+      .also {
+        margin-top: 22px;
+        padding: 22px 26px;
+        border: 1px dashed var(--line);
+        border-radius: 18px;
+      }
+      .also li {
+        margin: 8px 0;
+        font-size: 15.5px;
+        color: var(--muted);
+      }
+      .also li b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      @media (max-width: 900px) {
+        .feature {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .steps {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 0;
+        }
+        .steps li {
+          padding: 0 0 16px 40px;
+        }
+        .steps li::before {
+          top: 3px;
+        }
+        .steps li::after {
+          top: 24px;
+          left: 8px;
+          right: auto;
+          bottom: 2px;
+          width: 1px;
+          height: auto;
+        }
+        .steps li:last-child::after {
+          display: none;
+        }
+        .diagram .cap {
+          min-height: 0;
+        }
+      }
+      @media (max-width: 760px) {
+        section {
+          padding: 52px 0;
+        }
+        .grid2 {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .card {
+          padding: 22px;
+        }
+      }
+
+      /* experience */
+      .xp {
+        display: grid;
+        grid-template-columns: 230px minmax(0, 1fr);
+        gap: 28px;
+        padding: 28px 0;
+        border-top: 1px solid var(--line);
+      }
+      .xp:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+      .xp .when {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 13.5px;
+        color: var(--muted);
+      }
+      .xp .when b {
+        display: block;
+        color: var(--ink);
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+      .xp h3 {
+        font-size: 23px;
+        margin-bottom: 4px;
+      }
+      .xp .org {
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+      .xp h4 {
+        font:
+          600 15.5px "IBM Plex Sans",
+          sans-serif;
+        margin: 18px 0 4px;
+      }
+      @media (max-width: 760px) {
+        .xp {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 10px;
+        }
+      }
+
+      /* skills */
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 44px;
+      }
+      .sk {
+        display: grid;
+        grid-template-columns: 130px minmax(0, 1fr);
+        gap: 14px;
+        padding: 16px 0;
+        border-top: 1px solid var(--line);
+      }
+      .sk dt {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--accent);
+        padding-top: 3px;
+      }
+      .sk dd {
+        margin: 0;
+        font-size: 15.5px;
+      }
+      .note {
+        margin-top: 26px;
+        padding: 16px 20px;
+        border-left: 3px solid var(--accent);
+        background: var(--surface);
+        border-radius: 0 12px 12px 0;
+        font-size: 15.5px;
+        color: var(--muted);
+      }
+      .note b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      @media (max-width: 760px) {
+        .skills {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .sk {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 4px;
+        }
+      }
+
+      /* contact */
+      .contact {
+        background: var(--surface);
+        border-top: 1px solid var(--line);
+      }
+      .contact h2 {
+        font-size: clamp(32px, 5vw, 56px);
+        max-width: 18ch;
+        margin: 14px 0 18px;
+      }
+      .contact p {
+        color: var(--muted);
+        max-width: 56ch;
+      }
+      .mail {
+        display: inline-block;
+        margin-top: 28px;
+        font-family: "Fraunces", Georgia, serif;
+        font-size: clamp(20px, 3.4vw, 32px);
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px solid
+          color-mix(in srgb, var(--accent) 40%, transparent);
+        overflow-wrap: anywhere;
+      }
+      footer {
+        padding: 26px 0 40px;
+        background: var(--surface);
+        color: var(--muted);
+        font-size: 13.5px;
+      }
+      footer .wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 20px;
+        justify-content: space-between;
+        border-top: 1px solid var(--line);
+        padding-top: 22px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="#top">Abdurrahim Gider<span>.</span></a>
+        <nav class="nav-links" aria-label="Sections">
+          <a href="#work">Work</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+          <button
+            class="theme-btn"
+            id="themeBtn"
+            type="button"
+            aria-label="Switch color theme"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4.2" />
+              <path
+                d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5"
+              />
+            </svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <div class="hero">
+        <svg
+          class="contours"
+          viewBox="0 0 600 600"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.2"
+          aria-hidden="true"
+        >
+          <path
+            d="M300 60c110-8 215 62 236 170 22 112-34 236-146 282-108 44-246 10-312-88C16 330 30 196 112 118c50-46 120-54 188-58Z"
+          />
+          <path
+            d="M304 108c88-6 170 48 188 134 18 90-28 188-118 224-86 34-194 8-246-70-48-74-36-180 30-242 40-36 94-42 146-46Z"
+          />
+          <path
+            d="M308 156c66-4 126 36 140 100 14 68-22 140-90 166-64 24-142 6-180-52-36-56-26-134 24-180 30-26 68-30 106-34Z"
+          />
+          <path
+            d="M312 204c44-2 82 24 92 66 10 46-16 92-62 108-42 14-90 2-114-36-22-38-16-88 18-118 20-16 42-18 66-20Z"
+          />
+          <path
+            d="M316 252c22 0 40 12 44 32 4 24-10 44-32 50-20 6-40-2-50-20-10-18-6-40 10-54 8-6 18-8 28-8Z"
+          />
+        </svg>
+        <div class="wrap">
+          <p class="label">Backend &amp; AI Developer · Ankara, Türkiye</p>
+          <h1>I build backends that put AI into production <em>safely</em>.</h1>
+          <p class="intro">
+            About four years building backend services and AI products with
+            Node.js / TypeScript, Python and Go. Most recently I built an AI
+            assistant and the MCP server behind it for 30+ retail brands:
+            <strong
+              >agents that act on real customer data, with access control and
+              human approval.</strong
+            >
+            I studied Geomatics Engineering at İTÜ, so I also bring geospatial
+            data and maps into the systems I build.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="#work"
+              >See selected work
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 5v14M6 13l6 6 6-6" /></svg
+            ></a>
+            <a
+              class="btn"
+              href="Abdurrahim_Gider_CV.pdf"
+              download="Abdurrahim_Gider_CV.pdf"
+              >Download CV
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 4v11M7 11l5 5 5-5M5 20h14" /></svg
+            ></a>
+            <a class="btn" href="mailto:giderabdurrahim@gmail.com">Email me</a>
+            <a
+              class="btn"
+              href="https://github.com/Abgum"
+              target="_blank"
+              rel="noopener"
+              >GitHub</a
+            >
+            <a
+              class="btn"
+              href="https://www.linkedin.com/in/abdurrahimgider/"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <b>30+</b><span>retail brands using the AI assistant</span>
+            </div>
+            <div class="stat">
+              <b>60+</b><span>tools on the production MCP server</span>
+            </div>
+            <div class="stat">
+              <b>30,000+</b><span>locations bulk-updated through AWS SQS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORK -->
+      <section id="work">
+        <div class="wrap">
+          <div class="sec-head">
+            <span class="num">01</span>
+            <h2>Selected work</h2>
+          </div>
+
+          <article class="card">
+            <div class="feature">
+              <div>
+                <div class="meta">
+                  <span class="pill">VenueX</span
+                  ><span class="label">2025 – 2026</span>
+                </div>
+                <h3>AI assistant &amp; MCP server for 30+ retail brands</h3>
+                <p class="lead">
+                  Marketing teams at brands such as Koçtaş and Boyner query
+                  their store, review and campaign data in natural language.
+                  Built from scratch, from the agent design to the chat
+                  interface.
+                </p>
+                <ul class="bul">
+                  <li>
+                    Built the assistant end to end: LangGraph agent design
+                    through to the React chat UI.
+                  </li>
+                  <li>
+                    Set up the production <b>MCP server</b> in NestJS: 60+ tools
+                    across locations, reviews, campaigns and reports, with
+                    brand- and role-based access control.
+                  </li>
+                  <li>
+                    Opened the same server to external AI clients such as
+                    Claude, so customers reach their data from there too.
+                  </li>
+                  <li>
+                    Kept a <b>human in the loop</b>: the agent proposes location
+                    updates, bulk edits and review replies; nothing is applied
+                    until the user approves.
+                  </li>
+                  <li>
+                    Built a queue-based review pipeline on AWS SQS: drafts
+                    replies in the brand's tone and routes reviews to the right
+                    staff by category and location. Replies are sent only with
+                    user approval.
+                  </li>
+                  <li>
+                    Ran bulk updates for 30,000+ locations in the background
+                    through SQS, retrying at intervals that respect Google and
+                    Apple API limits.
+                  </li>
+                </ul>
+                <div class="tags">
+                  <span class="tag">LangGraph</span><span class="tag">MCP</span
+                  ><span class="tag">NestJS</span
+                  ><span class="tag">TypeScript</span
+                  ><span class="tag">React</span><span class="tag">AWS SQS</span
+                  ><span class="tag">ECharts in chat</span
+                  ><span class="tag">Excel / PDF reports</span>
+                </div>
+              </div>
+
+              <div class="diagram" id="diagram" data-path="all">
+                <div
+                  class="seg"
+                  role="group"
+                  aria-label="Highlight a path in the diagram"
+                >
+                  <button type="button" data-p="all" aria-pressed="true">
+                    Both paths
+                  </button>
+                  <button type="button" data-p="read" aria-pressed="false">
+                    Read
+                  </button>
+                  <button type="button" data-p="write" aria-pressed="false">
+                    Write
+                  </button>
+                </div>
+                <svg viewBox="0 0 360 580" role="img" aria-labelledby="dgT dgD">
+                  <title id="dgT">Architecture of the AI assistant</title>
+                  <desc id="dgD">
+                    The React chat UI talks to a LangGraph agent, which calls an
+                    MCP server with 60+ tools and brand and role access control.
+                    Read tools go directly to data. Write operations wait as a
+                    write proposal; after the user approves, they are applied
+                    through AWS SQS with retries and rate limits.
+                  </desc>
+
+                  <rect
+                    class="d-box"
+                    x="80"
+                    y="8"
+                    width="200"
+                    height="46"
+                    rx="10"
+                  />
+                  <text class="d-t" x="180" y="29">Chat UI</text>
+                  <text class="d-s" x="180" y="44">React</text>
+                  <path class="d-ln" d="M180 54v23" />
+                  <path class="d-ah" d="M175 76h10l-5 8z" />
+
+                  <rect
+                    class="d-box"
+                    x="80"
+                    y="84"
+                    width="200"
+                    height="46"
+                    rx="10"
+                  />
+                  <text class="d-t" x="180" y="105">Agent</text>
+                  <text class="d-s" x="180" y="120">LangGraph</text>
+                  <path class="d-ln" d="M180 130v23" />
+                  <path class="d-ah" d="M175 152h10l-5 8z" />
+
+                  <rect
+                    class="d-core"
+                    x="30"
+                    y="160"
+                    width="300"
+                    height="66"
+                    rx="12"
+                  />
+                  <text class="d-t" x="180" y="187">MCP server · NestJS</text>
+                  <text class="d-s" x="180" y="207">
+                    60+ tools · brand &amp; role access control
+                  </text>
+
+                  <g class="g-read">
+                    <path class="d-ln" d="M90 226v37" />
+                    <path class="d-ah" d="M85 262h10l-5 8z" />
+                    <rect
+                      class="d-box"
+                      x="20"
+                      y="270"
+                      width="140"
+                      height="50"
+                      rx="10"
+                    />
+                    <text class="d-t" x="90" y="292">Read tools</text>
+                    <text class="d-s" x="90" y="308">direct to data</text>
+                    <path class="d-ln" d="M90 320v197" />
+                    <path class="d-ah" d="M85 516h10l-5 8z" />
+                  </g>
+
+                  <g class="g-write">
+                    <path class="d-ln" d="M270 226v37" />
+                    <path class="d-ah" d="M265 262h10l-5 8z" />
+                    <rect
+                      class="d-box d-dash"
+                      x="200"
+                      y="270"
+                      width="140"
+                      height="50"
+                      rx="10"
+                    />
+                    <text class="d-t" x="270" y="292">Write proposal</text>
+                    <text class="d-s" x="270" y="308">waits, not applied</text>
+                    <path class="d-ln" d="M270 320v29" />
+                    <path class="d-ah" d="M265 348h10l-5 8z" />
+                    <rect
+                      class="d-warn"
+                      x="200"
+                      y="356"
+                      width="140"
+                      height="46"
+                      rx="10"
+                    />
+                    <text class="d-t" x="270" y="377">User approves</text>
+                    <text class="d-s" x="270" y="392">human in the loop</text>
+                    <path class="d-ln" d="M270 402v29" />
+                    <path class="d-ah" d="M265 430h10l-5 8z" />
+                    <rect
+                      class="d-box"
+                      x="200"
+                      y="438"
+                      width="140"
+                      height="50"
+                      rx="10"
+                    />
+                    <text class="d-t" x="270" y="460">AWS SQS</text>
+                    <text class="d-s" x="270" y="476">retry · rate limits</text>
+                    <path class="d-ln" d="M270 488v29" />
+                    <path class="d-ah" d="M265 516h10l-5 8z" />
+                  </g>
+
+                  <rect
+                    class="d-box"
+                    x="20"
+                    y="524"
+                    width="320"
+                    height="48"
+                    rx="10"
+                  />
+                  <text class="d-t" x="180" y="545">Brand data</text>
+                  <text class="d-s" x="180" y="561">
+                    locations · reviews · campaigns · reports
+                  </text>
+                </svg>
+                <p class="cap" id="dgCap" aria-live="polite">
+                  Reads go straight to data. Writes wait for a person.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <div class="grid2">
+            <article class="card">
+              <div class="meta">
+                <span class="pill">Individual project</span
+                ><span class="label">Open source</span>
+              </div>
+              <h3>Smart Campaign Composer</h3>
+              <p class="lead">
+                Turns a marketer's request into an audience and SMS / email
+                drafts. Built for a company's technical assessment and made
+                public at their request.
+              </p>
+              <ul class="bul">
+                <li>
+                  Sends no message until a person approves. Supports scheduled
+                  sends, A/B variants and multiple languages.
+                </li>
+                <li>
+                  Never runs LLM-generated audience rules directly: validates
+                  them, then compiles them to parameterized SQL.
+                </li>
+                <li>
+                  Runs a PostgreSQL-based queue with row-level locking, retries,
+                  idempotency keys and a unique index, so no message is sent
+                  twice.
+                </li>
+                <li>
+                  Checks consent twice: at approval and right before sending.
+                </li>
+                <li>
+                  Shows live send status over SSE in a Vue 3 dashboard; ships
+                  Prometheus metrics and GitHub Actions CI.
+                </li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Go</span><span class="tag">PostgreSQL</span
+                ><span class="tag">Vue 3</span
+                ><span class="tag">Claude API</span><span class="tag">SSE</span
+                ><span class="tag">Docker</span
+                ><span class="tag">Prometheus</span>
+              </div>
+            
+            </article>
+
+            <article class="card">
+              <div class="meta">
+                <span class="pill">Bachelor's thesis</span
+                ><span class="label">İTÜ</span>
+              </div>
+              <h3>LLM-based geospatial analysis automation</h3>
+              <p class="lead">
+                A multi-agent GIS system that turns plain-language requests into
+                end-to-end spatial analyzes.
+              </p>
+              <ul class="bul">
+                <li>
+                  Exposed spatial operations as agent tools: buffer, overlay
+                  (intersection, union, clip), spatial join, nearest neighbor,
+                  shortest path, density analysis and spatial clustering.
+                </li>
+                <li>
+                  Built a data preparation pipeline for Shapefile, GeoJSON,
+                  GeoPackage, GeoParquet, KML/KMZ and CSV, with CRS conversion
+                  and geometry repair.
+                </li>
+                <li>
+                  Orchestrated agents with LangGraph and compared OpenAI, Gemini
+                  and local LLMs on accuracy and cost.
+                </li>
+                <li>
+                  Served it with a Flask backend and an interactive map UI in
+                  Streamlit and Folium.
+                </li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">LangGraph</span
+                ><span class="tag">GeoPandas</span
+                ><span class="tag">pyogrio</span><span class="tag">Flask</span
+                ><span class="tag">Streamlit</span
+                ><span class="tag">Folium</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="meta">
+                <span class="pill">Kant · part-time</span
+                ><span class="label">AI + maps</span>
+              </div>
+              <h3>Dvina AI</h3>
+              <p class="lead">
+                A platform where users analyze their own tabular and geospatial
+                data with AI.
+              </p>
+              <ul class="bul">
+                <li>
+                  Built the map stack: layer publishing with GeoServer, fast
+                  rendering of large datasets with MapLibre GL and PMTiles.
+                </li>
+                <li>
+                  Wrote a GDAL-based service that validates large uploads and
+                  converts them into map layers.
+                </li>
+                <li>
+                  Ran open-source LLMs (LLaMA, DeepSeek, Gemma) in Docker and
+                  served them as APIs.
+                </li>
+                <li>
+                  Contributed to the LangGraph agent framework (OpenAI and local
+                  models, Cube.js, LangSmith) and time-series forecasting tools.
+                </li>
+                <li>
+                  Wrote a Pandas / NumPy module that preprocesses uploaded data
+                  and generates column descriptions.
+                </li>
+              </ul>
+              <p style="margin-top: 18px">
+                <a
+                  class="link"
+                  href="https://dvina.co/"
+                  target="_blank"
+                  rel="noopener"
+                  >dvina.co →</a
+                >
+              </p>
+            </article>
+
+            <article class="card">
+              <div class="meta">
+                <span class="pill">Kant · part-time</span
+                <p class="org">
+                <a
+                  class="link"
+                  href="https://kant.co/"
+                  target="_blank"
+                  rel="noopener"
+                  >Kant</a
+                >
+              </p>
+                ><span class="label">Backend</span>
+              </div>
+              <h3>Güngören Municipality mobile app</h3>
+              <p class="lead">
+                The backend behind the municipality's citizen app.
+              </p>
+              <ul class="bul">
+                <li>
+                  Built REST APIs for citizens to browse and sign up for
+                  municipal services.
+                </li>
+                <li>
+                  Verified identity through the Ministry of Interior's KPS query
+                  and phone numbers through OTP.
+                </li>
+                <li>
+                  Implemented multi-level role-based authorization for municipal
+                  staff, citizens and parents.
+                </li>
+                <li>
+                  Integrated online payments with iyzico and push notifications
+                  with Firebase.
+                </li>
+              </ul>
+              <div class="tags">
+                <span class="tag">NestJS</span
+                ><span class="tag">PostgreSQL</span
+                ><span class="tag">Prisma</span
+                ><span class="tag">Firebase</span>
+              </div>
+              <p style="margin-top: 18px">
+                <a
+                  class="link"
+                  href="https://www.gungoren.bel.tr/"
+                  target="_blank"
+                  rel="noopener"
+                  >gungoren.bel.tr →</a
+                >
+              </p>
+            </article>
+          </div>
+
+          <div class="also">
+            <p class="label">Also</p>
+            <ul style="margin-top: 8px">
+              <li>
+                <b>GIS-based metro route alternatives for Istanbul</b> (term
+                project, 2025). Team of 9, multi-criteria decision analysis with
+                the Best-Worst method; invited to present at the Metro İstanbul
+                General Directorate.
+              </li>
+              <li>
+                <b>Bread demand planning system</b> (2025). End-to-end demand
+                planning for a municipal bakery in Konya, built with .NET, C#,
+                Angular and MSSQL.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" style="padding-top: 20px">
+        <div class="wrap">
+          <div class="sec-head">
+            <span class="num">02</span>
+            <h2>Experience</h2>
+          </div>
+
+          <div class="xp">
+            <div class="when"><b>May 2025 – Oct 2026</b>Istanbul</div>
+            <div>
+              <h3>Software Developer</h3>
+              <p class="org">
+                <a
+                  class="link"
+                  href="https://venuex.io/"
+                  target="_blank"
+                  rel="noopener"
+                  >VenueX</a
+                >
+                · Omnichannel platform for 30+ retail brands and 30,000+
+                locations
+              </p>
+              <ul class="bul">
+                <li>
+                  Built the AI assistant and the production MCP server behind it
+                  (60+ tools, brand and role access control, human approval for
+                  every write).
+                </li>
+                <li>
+                  Built the SQS-based review pipeline: reply drafts in the
+                  brand's tone, routing by category and location.
+                </li>
+                <li>
+                  Ran bulk updates for 30,000+ locations as background jobs with
+                  rate-limit-aware retries.
+                </li>
+                <li>Integrated the Google Merchant Center API.</li>
+                <li>
+                  Built a single publishing interface for Google Business
+                  Profile Local Posts and Apple Business Connect Showcases.
+                </li>
+                <li>
+                  Traced a post-launch outage to MCP server capacity, then fixed
+                  it at the root with indexes and better parallel tool calls.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="xp">
+            <div class="when">
+              <b>Aug 2022 – May 2025</b>Istanbul · Part-time
+            </div>
+            <div>
+              <h3>Part-time Software Developer</h3>
+              <p class="org">Kant</p>
+              <h4>Dvina AI</h4>
+              <ul class="bul">
+                <li>
+                  Built the map infrastructure (GeoServer, MapLibre GL, PMTiles)
+                  and a GDAL-based upload service.
+                </li>
+                <li>
+                  Served open-source LLMs from Docker and contributed to the
+                  LangGraph agent framework.
+                </li>
+              </ul>
+              <h4>Güngören Municipality mobile app</h4>
+              <ul class="bul">
+                <li>
+                  Built the backend: REST APIs, KPS and OTP verification,
+                  multi-level roles, iyzico payments, Firebase push.
+                </li>
+              </ul>
+              <h4>ClickUp productivity analysis tool</h4>
+              <ul class="bul">
+                <li>
+                  Built an internal tool that estimates the duration of new
+                  tasks from completed ClickUp tasks, on an indexed, normalized
+                  MySQL schema (NestJS, TypeScript, MySQL).
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="xp">
+            <div class="when"><b>Sep 2020 – Jun 2025</b>Istanbul</div>
+            <div>
+              <h3>B.Sc. Geomatics Engineering</h3>
+              <p class="org">
+                Istanbul Technical University (İTÜ) · GPA 3.05 / 4.0
+              </p>
+              <ul class="bul">
+                <li>
+                  Wrote a thesis on a multi-agent system that turns
+                  plain-language requests into spatial analyzes.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" style="padding-top: 20px">
+        <div class="wrap">
+          <div class="sec-head">
+            <span class="num">03</span>
+            <h2>Skills</h2>
+          </div>
+          <dl class="skills">
+            <div class="sk">
+              <dt>Languages</dt>
+              <dd>TypeScript / JavaScript, Python, Go, C#, SQL</dd>
+            </div>
+            <div class="sk">
+              <dt>Backend</dt>
+              <dd>
+                NestJS, Node.js, Express, .NET, Flask, REST, SSE, queues and
+                background jobs, authentication and authorization
+              </dd>
+            </div>
+            <div class="sk">
+              <dt>AI</dt>
+              <dd>
+                LangGraph, LangChain, LangSmith, MCP, RAG, OpenAI, Gemini,
+                Claude API, local LLMs (LLaMA, DeepSeek, Gemma)
+              </dd>
+            </div>
+            <div class="sk">
+              <dt>Data</dt>
+              <dd>PostgreSQL, MongoDB, MySQL, MSSQL, Redis, Prisma</dd>
+            </div>
+            <div class="sk">
+              <dt>Cloud &amp; DevOps</dt>
+              <dd>
+                AWS SQS, Docker, GitHub Actions, Google Cloud Run, Firebase,
+                Prometheus
+              </dd>
+            </div>
+            <div class="sk">
+              <dt>Geospatial</dt>
+              <dd>
+                PostGIS, GDAL, GeoPandas, GeoServer, MapLibre GL, PMTiles, QGIS,
+                ArcGIS
+              </dd>
+            </div>
+            <div class="sk">
+              <dt>Frontend</dt>
+              <dd>React, Vue 3, Angular</dd>
+            </div>
+            <div class="sk">
+              <dt>Spoken</dt>
+              <dd>Turkish (native), English (B2)</dd>
+            </div>
+          </dl>
+          <p class="note">
+            <b>How I work:</b> I use AI coding tools (Claude Code) every day,
+            review the code they produce and verify it with tests.
+          </p>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="contact">
+        <div class="wrap">
+          <p class="label">04 · Contact</p>
+          <h2>
+            Looking for a team where I can own backend and AI work end to end.
+          </h2>
+          <p>
+            I'm based in Ankara. Queue-based background jobs, retries and
+            idempotency are part of my everyday work, and I enjoy tracing a
+            production issue down to its root cause.
+          </p>
+          <a class="mail" href="mailto:giderabdurrahim@gmail.com"
+            >giderabdurrahim@gmail.com</a
+          >
+          <div class="cta">
+            <a
+              class="btn primary"
+              href="Abdurrahim_Gider_CV.pdf"
+              download="Abdurrahim_Gider_CV.pdf"
+              >Download CV
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 4v11M7 11l5 5 5-5M5 20h14" /></svg
+            ></a>
+            <a
+              class="btn"
+              href="https://www.linkedin.com/in/abdurrahimgider/"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+            <a
+              class="btn"
+              href="https://github.com/Abgum"
+              target="_blank"
+              rel="noopener"
+              >GitHub</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <span>Abdurrahim Gider · Backend &amp; AI Developer</span>
+        <span>Ankara, Türkiye</span>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var root = document.documentElement,
+          KEY = "ag-theme";
+        try {
+          var s = localStorage.getItem(KEY);
+          if (s === "light" || s === "dark") root.setAttribute("data-theme", s);
+        } catch (e) {}
+        document
+          .getElementById("themeBtn")
+          .addEventListener("click", function () {
+            var cur =
+              root.getAttribute("data-theme") ||
+              (window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light");
+            var next = cur === "dark" ? "light" : "dark";
+            root.setAttribute("data-theme", next);
+            try {
+              localStorage.setItem(KEY, next);
+            } catch (e) {}
+          });
+
+        var dg = document.getElementById("diagram"),
+          cap = document.getElementById("dgCap");
+        var caps = {
+          all: "Reads go straight to data. Writes wait for a person.",
+          read: "Read tools query data directly, limited to what the user’s brand and role allow.",
+          write:
+            "Location updates, bulk edits and review replies wait as proposals. Once the user approves, SQS applies them with retries and rate limiting.",
+        };
+        dg.querySelectorAll(".seg button").forEach(function (b) {
+          b.addEventListener("click", function () {
+            var p = b.getAttribute("data-p");
+            dg.setAttribute("data-path", p);
+            cap.textContent = caps[p];
+            dg.querySelectorAll(".seg button").forEach(function (x) {
+              x.setAttribute("aria-pressed", x === b ? "true" : "false");
+            });
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
